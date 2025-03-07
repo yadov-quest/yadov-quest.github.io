@@ -8,6 +8,38 @@
         html {
             scroll-behavior: smooth;
         }
+        
+        /* Бургер-меню */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+        }
+        
+        .burger-menu span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Трансформация бургер-кнопки */
+        .burger-menu.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .burger-menu.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
         :root {
             --primary: #4a89dc;
             --secondary: #f5f7fa;
@@ -289,12 +321,49 @@
         /* Адаптивность */
         @media (max-width: 768px) {
             .header-content {
-                flex-direction: column;
-                text-align: center;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .burger-menu {
+                display: flex;
+            }
+            
+            nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--light);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                z-index: 99;
+            }
+            
+            nav.mobile-visible {
+                max-height: 300px;
             }
             
             nav ul {
-                margin-top: 20px;
+                flex-direction: column;
+                width: 100%;
+                padding: 10px 0;
+                margin: 0;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                text-align: center;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 10px;
             }
             
             .hero h1 {
@@ -347,6 +416,11 @@
         <div class="container">
             <div class="header-content">
                 <a href="#" class="logo">МедЦентр</a>
+                <div class="burger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
                 <nav>
                     <ul>
                         <li><a href="#services">Услуги</a></li>
@@ -543,6 +617,24 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Получаем все ссылки навигации
             const navLinks = document.querySelectorAll('nav a, .footer-column a, .hero a');
+            const burgerMenu = document.querySelector('.burger-menu');
+            const nav = document.querySelector('nav');
+            
+            // Обработчик клика по бургер-меню
+            burgerMenu.addEventListener('click', function() {
+                this.classList.toggle('active');
+                nav.classList.toggle('mobile-visible');
+            });
+            
+            // Закрываем меню при клике на пункт меню на мобильных
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 768) {
+                        burgerMenu.classList.remove('active');
+                        nav.classList.remove('mobile-visible');
+                    }
+                });
+            });
             
             // Добавляем обработчик события для каждой ссылки
             navLinks.forEach(link => {
@@ -606,14 +698,11 @@
             // Проверяем видимость при скролле
             window.addEventListener('scroll', checkVisibility);
             
-            // Мобильное меню
-            const logo = document.querySelector('.logo');
-            const nav = document.querySelector('nav');
-            
-            logo.addEventListener('click', function(e) {
-                if (window.innerWidth <= 480) {
-                    e.preventDefault();
-                    nav.classList.toggle('mobile-visible');
+            // Закрываем меню при изменении размера экрана
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    burgerMenu.classList.remove('active');
+                    nav.classList.remove('mobile-visible');
                 }
             });
         });
