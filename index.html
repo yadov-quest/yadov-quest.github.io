@@ -10,6 +10,22 @@
             scroll-behavior: smooth;
         }
         
+        /* Удаление синей подсветки при фокусе */
+        button:focus,
+        a:focus,
+        input:focus,
+        textarea:focus,
+        select:focus,
+        .btn:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Для устранения подсветки на тач-устройствах (мобильные) */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
         /* Бургер-меню */
         .burger-menu {
             display: none;
