@@ -58,11 +58,11 @@
             transform: translateY(-9px) rotate(-45deg);
         }
         :root {
-            --primary: #8B0000;
-            --secondary: #f8f8f8;
-            --dark: #000000e9;
-            --light: #ffffff;
-            --accent: #a52a2a;
+            --primary: #333333;       /* Темно-серый вместо бордового для основных элементов */
+            --secondary: #f8f8f8;     /* Светло-серый фон остается */
+            --dark: #000000;          /* Чистый черный для текста */
+            --light: #ffffff;         /* Белый цвет остается */
+            --accent: #8B0000;        /* Бордовый только для акцентов */
         }
         
         * {
@@ -124,16 +124,16 @@
         }
         
         nav ul li a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
         
         /* Главный баннер */
         .hero {
-            background-color: var(--primary);
+            background-color: var(--dark);
             color: var(--light);
             text-align: center;
             padding: 80px 0;
-            background-image: linear-gradient(rgba(139, 0, 0, 0.8), rgba(139, 0, 0, 0.8)), url('https://cdnjs.cloudflare.com/ajax/libs/placeholder-loading/0.6.0/img-1.jpg');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://cdnjs.cloudflare.com/ajax/libs/placeholder-loading/0.6.0/img-1.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -152,7 +152,7 @@
         .btn {
             display: inline-block;
             background-color: var(--light);
-            color: var(--primary);
+            color: var(--dark);
             padding: 12px 24px;
             border-radius: 4px;
             text-decoration: none;
@@ -163,7 +163,7 @@
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            background-color: var(--dark);
+            background-color: var(--accent);
             color: var(--light);
         }
         
@@ -175,7 +175,7 @@
         .section-title {
             text-align: center;
             margin-bottom: 40px;
-            color: var(--primary);
+            color: var(--dark);
             position: relative;
             padding-bottom: 15px;
         }
@@ -188,7 +188,7 @@
             transform: translateX(-50%);
             width: 50px;
             height: 2px;
-            background-color: var(--primary);
+            background-color: var(--accent);
         }
         
         /* Услуги */
@@ -209,7 +209,7 @@
         
         .service-card:hover {
             transform: translateY(-5px);
-            border-bottom: 3px solid var(--primary);
+            border-bottom: 3px solid var(--accent);
         }
         
         .service-card {
@@ -250,7 +250,7 @@
         }
         
         .service-content h3 {
-            color: var(--primary);
+            color: var(--dark);
             margin-bottom: 10px;
         }
         
@@ -300,7 +300,7 @@
 }
 
 .specialist-content h3 {
-    color: var(--primary);
+    color: var(--dark);
     margin-bottom: 8px;
     font-size: 20px; /* Увеличенный размер шрифта */
     line-height: 1.3;
@@ -354,7 +354,7 @@
         }
         
         .certificate-content h3 {
-            color: var(--primary);
+            color: var(--dark);
             margin-bottom: 5px;
             font-size: 16px;
         }
@@ -427,7 +427,7 @@
         
         .modal-title {
             font-size: 18px;
-            color: var(--primary);
+            color: var(--dark);
             margin-bottom: 10px;
             text-align: center;
         }
@@ -444,7 +444,7 @@
         }
         
         .close-modal:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
         
         /* Контакты */
@@ -462,7 +462,7 @@
         }
         
         .contact-info h3 {
-            color: var(--primary);
+            color: var(--dark);
             margin-bottom: 20px;
         }
         
@@ -495,7 +495,7 @@
         .footer-column h3 {
             margin-bottom: 20px;
             font-size: 18px;
-            color: var(--primary);
+            color: var(--light);
         }
         
         .footer-column ul {
@@ -513,7 +513,7 @@
         }
         
         .footer-column ul li a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
         
         .copyright {
