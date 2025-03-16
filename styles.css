@@ -1,0 +1,765 @@
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --primary: #333333;       /* Темно-серый вместо бордового для основных элементов */
+    --secondary: #f8f8f8;     /* Светло-серый фон остается */
+    --dark: #000000;          /* Чистый черный для текста */
+    --light: #ffffff;         /* Белый цвет остается */
+    --accent: #8B0000;        /* Бордовый только для акцентов */
+}
+
+/* Сброс и основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Удаление синей подсветки при фокусе */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus,
+.btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+body {
+    color: var(--dark);
+    background-color: var(--secondary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Заголовок */
+header {
+    background-color: var(--light);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+/* Бургер-меню */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+}
+
+.burger-menu span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--primary);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Трансформация бургер-кнопки */
+.burger-menu.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Навигация */
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--accent);
+}
+
+/* Главный баннер */
+.hero {
+    background-color: var(--dark);
+    color: var(--light);
+    text-align: center;
+    padding: 80px 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://cdnjs.cloudflare.com/ajax/libs/placeholder-loading/0.6.0/img-1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--light);
+    color: var(--dark);
+    padding: 12px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background-color: var(--accent);
+    color: var(--light);
+}
+
+/* Секции */
+section {
+    padding: 60px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--dark);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background-color: var(--accent);
+}
+
+/* Услуги */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background-color: var(--light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    border-bottom: 3px solid transparent;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-bottom: 3px solid var(--accent);
+}
+
+.service-card.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.service-content {
+    padding: 20px;
+}
+
+.service-content h3 {
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+/* Специалисты */
+.specialists-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.specialist-card {
+    background-color: var(--light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    width: 320px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.specialist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.specialist-card.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.specialist-image {
+    height: 260px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.specialist-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.specialist-content h3 {
+    color: var(--dark);
+    margin-bottom: 8px;
+    font-size: 20px;
+    line-height: 1.3;
+}
+
+.specialist-content .specialty {
+    color: #777;
+    font-style: italic;
+    margin-bottom: 12px;
+    font-size: 16px;
+}
+
+.specialist-content p {
+    margin-bottom: 0;
+    font-size: 16px;
+}
+
+/* Сертификаты */
+.certificates-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.certificate-card {
+    background-color: var(--light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: transform 0.3s;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    width: 300px;
+}
+
+.certificate-image {
+    height: 300px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.certificate-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.certificate-card:hover {
+    transform: translateY(-5px);
+}
+
+.certificate-card.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.certificate-image {
+    height: 250px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #eee;
+}
+
+.certificate-content {
+    padding: 20px;
+}
+
+.certificate-content h3 {
+    color: var(--dark);
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/* Юридическая информация */
+#legal {
+    background-color: var(--secondary);
+    padding: 60px 0;
+}
+
+.legal-content {
+    background-color: var(--light);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.legal-content p {
+    margin-bottom: 10px;
+}
+
+.legal-content .btn {
+    margin-top: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--light);
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.legal-content .btn:hover {
+    background-color: var(--accent);
+}
+
+/* Стили для кнопок юридических документов */
+.legal-content .btn.legal-doc-btn {
+    display: inline-block;
+    background-color: var(--primary);
+    color: var(--light);
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 14px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.legal-content .btn.legal-doc-btn:hover {
+    background-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Контакты */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.contact-info {
+    background-color: var(--light);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.contact-info h3 {
+    color: var(--dark);
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+.map {
+    height: 300px;
+    background-color: #e1e5ee;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* О нас */
+.about-content {
+    background-color: var(--light);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    line-height: 1.8;
+}
+
+.about-content p {
+    margin-bottom: 15px;
+}
+
+/* Футер */
+footer {
+    background-color: var(--dark);
+    color: var(--light);
+    padding: 40px 0;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.footer-column h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: var(--light);
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: var(--accent);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Модальные окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    background-color: var(--light);
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: var(--dark);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--accent);
+}
+
+.modal-title {
+    font-size: 18px;
+    color: var(--dark);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Стили для модального окна сертификатов */
+.certificate-modal-content {
+    max-width: 850px;
+    max-height: 90vh;
+    width: 90%;
+    overflow: hidden;
+}
+
+.certificate-placeholder {
+    width: 100%;
+    height: 500px;
+    background-color: #f5f5f5;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.certificate-placeholder iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.certificate-placeholder-content {
+    font-size: 24px;
+    color: #777;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Стили для модального окна с юридическими документами */
+.legal-modal-content {
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+.legal-doc-content {
+    text-align: left;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+.legal-doc-content h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.legal-doc-content p {
+    margin-bottom: 15px;
+}
+
+.legal-doc-content ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.legal-doc-content li {
+    margin-bottom: 5px;
+}
+
+.legal-doc-content strong {
+    font-weight: bold;
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+    .certificate-modal-content {
+        width: 95%;
+        max-height: 80vh;
+        padding: 15px;
+    }
+    
+    .certificate-placeholder {
+        height: 400px;
+    }
+    
+    .modal-title {
+        font-size: 16px;
+    }
+    
+    .header-content {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .burger-menu {
+        display: flex;
+    }
+    
+    nav {
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--light);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 99;
+    }
+    
+    nav.mobile-visible {
+        max-height: 350px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 0;
+        margin: 0;
+    }
+    
+    nav ul li {
+        margin: 10px 0;
+        text-align: center;
+        width: 100%;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 10px;
+    }
+    
+    .hero h1 {
+        font-size: 28px;
+    }
+    
+    .hero p {
+        font-size: 16px;
+    }
+    
+    .services-grid, 
+    .specialists-grid,
+    .certificates-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .legal-content .btn.legal-doc-btn {
+        display: block;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    
+    .legal-modal-content {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificate-modal-content {
+        width: 95%;
+        padding: 10px;
+    }
+    
+    .certificate-placeholder {
+        height: 350px;
+    }
+    
+    .close-modal {
+        top: 5px;
+        right: 10px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 10px 0;
+        margin-left: 0;
+    }
+    
+    .hero {
+        padding: 50px 0;
+    }
+    
+    section {
+        padding: 40px 0;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
