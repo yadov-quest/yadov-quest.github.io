@@ -106,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         certificatePlaceholder.innerHTML = `
                             <div class="certificate-placeholder-content">
                                 <p>Для просмотра лицензии на мобильном устройстве:</p>
-                                <a href="${certificateData.filePath}" target="_blank" class="btn" style="margin: 6px;">Открыть в новом окне</a>
                                 <a href="${certificateData.filePath}" download="license.pdf" class="btn" style="margin: 10px;">Скачать файл</a>
                             </div>
                         `;
