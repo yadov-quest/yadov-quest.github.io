@@ -67,15 +67,27 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: "3",
-            title: "Сертификат врача-косметолога",
+            title: "Диплом Сакович Анна Николаевна",
             fileType: "image",
-            image: "/api/placeholder/800/600" // Заглушка для изображения
+            image: "diploma_sakovich.jpg" // Заглушка для изображения
         },
         {
             id: "4",
-            title: "Диплом косметолога-эстетиста",
+            title: "Сертификат Сакович Анна Николаевна",
             fileType: "image",
-            image: "/api/placeholder/800/600" // Заглушка для изображения
+            image: "certificat_sakovich.jpg" // Заглушка для изображения
+        },
+        {
+            id: "5",
+            title: "Переподготовка Сакович Анна Николаевна",
+            fileType: "image",
+            image: "cosmetology_sakovich.jpg" // Заглушка для изображения
+        },
+        {
+            id: "6",
+            title: "Диплом Ропот Наталья Вячеславовна",
+            fileType: "image",
+            image: "ropot.jpg" // Заглушка для изображения
         }
     ];
     
@@ -106,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         certificatePlaceholder.innerHTML = `
                             <div class="certificate-placeholder-content">
                                 <p>Для просмотра лицензии на мобильном устройстве:</p>
+                                <a href="${certificateData.filePath}" target="_blank" class="btn" style="margin: 6px;">Открыть в новом окне</a>
                                 <a href="${certificateData.filePath}" download="license.pdf" class="btn" style="margin: 10px;">Скачать файл</a>
                             </div>
                         `;
@@ -120,10 +133,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         certificatePlaceholder.appendChild(pdfFrame);
                     }
                 } else {
-                    // Для обычных изображений используем плейсхолдер
-                    certificatePlaceholder.innerHTML = `<div class="certificate-placeholder-content">
-                        Сертификат ${certificateId} (800×600)
-                    </div>`;
+                    // Для изображений создаем img элемент
+                    const imgElement = document.createElement('img');
+                    imgElement.src = certificateData.image;
+                    imgElement.alt = certificateData.title;
+                    imgElement.style.maxWidth = '100%';
+                    imgElement.style.maxHeight = '100%';
+                    imgElement.style.objectFit = 'contain';
+                    
+                    certificatePlaceholder.appendChild(imgElement);
                 }
                 
                 // Открываем модальное окно
